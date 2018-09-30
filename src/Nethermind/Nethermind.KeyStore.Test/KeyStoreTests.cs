@@ -117,27 +117,27 @@ namespace Nethermind.KeyStore.Test
             result = _store.DeleteKey(key2.Address, _testPasswordSecured);
             Assert.AreEqual(ResultType.Success, result.ResultType, "delete key 2");
         }
-//
-//        [Test]
-//        public void GenerateKeyTest()
-//        {
-//            //generate key
-//            (PrivateKey, Result) key = _store.GenerateKey(_testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, key.Item2.ResultType);
-//
-//            //get persisted key, verify it matches generated key
-//            (PrivateKey, Result) persistedKey = _store.GetKey(key.Item1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, persistedKey.Item2.ResultType);
-//            Assert.IsTrue(Bytes.AreEqual(key.Item1.KeyBytes, persistedKey.Item1.KeyBytes));
-//
-//            //delete generated key
-//            Result result = _store.DeleteKey(key.Item1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, result.ResultType);
-//
-//            //get created key, verify it does not exist anymore
-//            (PrivateKey, Result) deletedKey = _store.GetKey(key.Item1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Failure, deletedKey.Item2.ResultType);
-//        }
+
+        [Test]
+        public void GenerateKeyTest()
+        {
+            //generate key
+            (PrivateKey, Result) key = _store.GenerateKey(_testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, key.Item2.ResultType);
+
+            //get persisted key, verify it matches generated key
+            (PrivateKey, Result) persistedKey = _store.GetKey(key.Item1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, persistedKey.Item2.ResultType);
+            Assert.IsTrue(Bytes.AreEqual(key.Item1.KeyBytes, persistedKey.Item1.KeyBytes));
+
+            //delete generated key
+            Result result = _store.DeleteKey(key.Item1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, result.ResultType);
+
+            //get created key, verify it does not exist anymore
+            (PrivateKey, Result) deletedKey = _store.GetKey(key.Item1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Failure, deletedKey.Item2.ResultType);
+        }
 //
 //        [Test]
 //        public void KeyStoreVersionMismatchTest()
