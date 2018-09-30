@@ -161,27 +161,27 @@ namespace Nethermind.KeyStore.Test
             //clean up
             File.Delete(filePath);
         }
-//
-//        [Test]
-//        public void WrongPasswordTest()
-//        {
-//            //generate key
-//            (PrivateKey, Result) key = _store.GenerateKey(_testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, key.Item2.ResultType);
-//
-//            //Get with right pass
-//            (PrivateKey, Result) key2 = _store.GetKey(key.Item1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, key2.Item2.ResultType);
-//            Assert.IsTrue(Bytes.AreEqual(key.Item1.KeyBytes, key2.Item1.KeyBytes));
-//
-//            //Try to Get with wrong pass
-//            (PrivateKey, Result) key3 = _store.GetKey(key.Item1.Address, _wrongPasswordSecured);
-//            Assert.AreEqual(ResultType.Failure, key3.Item2.ResultType);
-//            Assert.AreEqual("Incorrect MAC", key3.Item2.Error);
-//
-//            //delete generated key
-//            Result result = _store.DeleteKey(key.Item1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, result.ResultType);
-//        }
+
+        [Test]
+        public void WrongPasswordTest()
+        {
+            //generate key
+            (PrivateKey, Result) key = _store.GenerateKey(_testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, key.Item2.ResultType);
+
+            //Get with right pass
+            (PrivateKey, Result) key2 = _store.GetKey(key.Item1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, key2.Item2.ResultType);
+            Assert.IsTrue(Bytes.AreEqual(key.Item1.KeyBytes, key2.Item1.KeyBytes));
+
+            //Try to Get with wrong pass
+            (PrivateKey, Result) key3 = _store.GetKey(key.Item1.Address, _wrongPasswordSecured);
+            Assert.AreEqual(ResultType.Failure, key3.Item2.ResultType);
+            Assert.AreEqual("Incorrect MAC", key3.Item2.Error);
+
+            //delete generated key
+            Result result = _store.DeleteKey(key.Item1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, result.ResultType);
+        }
     }
 }
