@@ -87,36 +87,36 @@ namespace Nethermind.KeyStore.Test
             //clean up
             File.Delete(filePath);
         }
-//
-//        [Test]
-//        public void GenerateKeyAddressesTest()
-//        {
-//            Result result;
-//            PrivateKey key1;
-//            PrivateKey key2;
-//
-//            File.Create(Path.Combine(_configurationProvider.GetConfig<IKeystoreConfig>().KeyStoreDirectory, "not_a_key"));
-//            
-//            (key1, result) = _store.GenerateKey(_testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, result.ResultType, "generate key 1");
-//
-//            (key2, result) = _store.GenerateKey(_testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, result.ResultType, "generate key 2");
-//
-//            //get key addreses
-//            (IReadOnlyCollection<Address> addresses, Result getAllResult) = _store.GetKeyAddresses();
-//            Assert.AreEqual(ResultType.Success, getAllResult.ResultType, "get key");
-//            Assert.IsTrue(addresses.Count() >= 2);
-//            Assert.IsNotNull(addresses.FirstOrDefault(x => x.Equals(key1.Address)), "key 1 not null");
-//            Assert.IsNotNull(addresses.FirstOrDefault(x => x.Equals(key2.Address)), "key 2 not null");
-//
-//            //delete generated keys
-//            result = _store.DeleteKey(key1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, result.ResultType, "delete key 1");
-//
-//            result = _store.DeleteKey(key2.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, result.ResultType, "delete key 2");
-//        }
+
+        [Test]
+        public void GenerateKeyAddressesTest()
+        {
+            Result result;
+            PrivateKey key1;
+            PrivateKey key2;
+
+            File.Create(Path.Combine(_configurationProvider.GetConfig<IKeystoreConfig>().KeyStoreDirectory, "not_a_key"));
+            
+            (key1, result) = _store.GenerateKey(_testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, result.ResultType, "generate key 1");
+
+            (key2, result) = _store.GenerateKey(_testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, result.ResultType, "generate key 2");
+
+            //get key addreses
+            (IReadOnlyCollection<Address> addresses, Result getAllResult) = _store.GetKeyAddresses();
+            Assert.AreEqual(ResultType.Success, getAllResult.ResultType, "get key");
+            Assert.IsTrue(addresses.Count() >= 2);
+            Assert.IsNotNull(addresses.FirstOrDefault(x => x.Equals(key1.Address)), "key 1 not null");
+            Assert.IsNotNull(addresses.FirstOrDefault(x => x.Equals(key2.Address)), "key 2 not null");
+
+            //delete generated keys
+            result = _store.DeleteKey(key1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, result.ResultType, "delete key 1");
+
+            result = _store.DeleteKey(key2.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, result.ResultType, "delete key 2");
+        }
 //
 //        [Test]
 //        public void GenerateKeyTest()
