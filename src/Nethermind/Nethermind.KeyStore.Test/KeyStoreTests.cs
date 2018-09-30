@@ -138,29 +138,29 @@ namespace Nethermind.KeyStore.Test
             (PrivateKey, Result) deletedKey = _store.GetKey(key.Item1.Address, _testPasswordSecured);
             Assert.AreEqual(ResultType.Failure, deletedKey.Item2.ResultType);
         }
-//
-//        [Test]
-//        public void KeyStoreVersionMismatchTest()
-//        {
-//            //generate key
-//            (PrivateKey, Result) key = _store.GenerateKey(_testPasswordSecured);
-//            Assert.AreEqual(ResultType.Success, key.Item2.ResultType);
-//
-//            //replace version
-//            string filePath = Path.Combine(_configurationProvider.GetConfig<IKeystoreConfig>().KeyStoreDirectory, key.Item1.Address.ToString());
-//            KeyStoreItem item = _serializer.Deserialize<KeyStoreItem>(File.ReadAllText(filePath));
-//            item.Version = 1;
-//            string json = _serializer.Serialize(item);
-//            File.WriteAllText(filePath, json);
-//
-//            //try to read
-//            (PrivateKey, Result) key2 = _store.GetKey(key.Item1.Address, _testPasswordSecured);
-//            Assert.AreEqual(ResultType.Failure, key2.Item2.ResultType);
-//            Assert.AreEqual("KeyStore version mismatch", key2.Item2.Error);
-//
-//            //clean up
-//            File.Delete(filePath);
-//        }
+
+        [Test]
+        public void KeyStoreVersionMismatchTest()
+        {
+            //generate key
+            (PrivateKey, Result) key = _store.GenerateKey(_testPasswordSecured);
+            Assert.AreEqual(ResultType.Success, key.Item2.ResultType);
+
+            //replace version
+            string filePath = Path.Combine(_configurationProvider.GetConfig<IKeystoreConfig>().KeyStoreDirectory, key.Item1.Address.ToString());
+            KeyStoreItem item = _serializer.Deserialize<KeyStoreItem>(File.ReadAllText(filePath));
+            item.Version = 1;
+            string json = _serializer.Serialize(item);
+            File.WriteAllText(filePath, json);
+
+            //try to read
+            (PrivateKey, Result) key2 = _store.GetKey(key.Item1.Address, _testPasswordSecured);
+            Assert.AreEqual(ResultType.Failure, key2.Item2.ResultType);
+            Assert.AreEqual("KeyStore version mismatch", key2.Item2.Error);
+
+            //clean up
+            File.Delete(filePath);
+        }
 //
 //        [Test]
 //        public void WrongPasswordTest()
