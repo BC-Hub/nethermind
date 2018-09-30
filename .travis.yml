@@ -6,6 +6,15 @@ git:
   depth: 3
 jobs:
   include:
+    - stage: restore and build
+      script: 
+        - dotnet restore src/Nethermind
+        - dotnet build src/Nethermind
+      name: "Restore and build projects"
+    - script: dotnet build src/Nethermind
+      name: "Build projects"
     - stage: run tests
+      script: dotnet test src/Nethermind/Ethereum.Basic.Test
+      name: "Ethereum.Basic.Test"
     - script: dotnet test src/Nethermind/Nethermind.KeyStore.Test
       name: "Nethermind.KeyStore.Test"
